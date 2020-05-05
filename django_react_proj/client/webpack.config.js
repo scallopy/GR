@@ -17,18 +17,17 @@ const paths = {
 // Change your entry point here
 
 module.exports = {
-  entry: path.join('./src/index.js'),
+  entry: ['./src/index.js'],
   output: {
-    path: path.join(__dirname, './public/dist'),
-    filename: 'app.bundle.js',
+    path: path.resolve(__dirname, 'public/dist'),
+    filename: 'app.bundle.js'
   },
 
   // Tell webpack to use html plugin
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(paths.PUBLIC, 'index.html'),
-    }),
-
+        template: path.join(paths.PUBLIC, 'index.html'),
+      }),
     new ExtractTextPlugin('style.bundle.css'),
   ],
 
@@ -48,7 +47,7 @@ module.exports = {
           use: 'css-loader',
         }),
       },{
-        test: /\.sass$/,
+        test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           use: ['css-loader', 'sass-loader']
         }),
@@ -58,6 +57,7 @@ module.exports = {
       },
     ],
   },
+
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
