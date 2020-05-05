@@ -133,7 +133,7 @@ https://blog.cloudboost.io/react-redux-webpack-3-django-nov-2017-53a09d09cf75
 ### 2. Configure your package.json scripts to use webpack with commands
 ### 2. Add it to your project’s root folder as a .babelrc file
 
-**Now with the command npm run buildwebpack, Webpack will generate a dist/
+**Now with the command `npm run buildwebpack`, Webpack will generate a dist/
 folder with all the files assets and with npm run dev we can start the frontend
 aplication.**
 
