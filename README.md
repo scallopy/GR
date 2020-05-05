@@ -96,6 +96,46 @@ https://www.techiediaries.com/create-react-app-django/
 
 https://fractalideas.com/blog/making-react-and-django-play-well-together/
 
+## React + Redux + Webpack 3 + Django (Nov 2017)
+
+https://blog.cloudboost.io/react-redux-webpack-3-django-nov-2017-53a09d09cf75
+
+### Firstly, I created four folders for the app:
+
+ - assets: Here I will save all the resources for the app, as images, gifs …
+
+ - js: Here will be all the js and jsx files.
+
+ - services: Here will be the reducers and actions (redux)
+
+ - styles: Here will be all the styles files like css or scss.
+
+### Secondly, install some usefull packages for the project:
+
+    ```bash
+    $ npm install --save redux react-redux
+    $ npm install --save reactstrap react-transition-group@1.1.2
+    $ npm install --save bootstrap@4.0.0-beta
+    $ npm install material-ui
+    ```
+### Install Webpack into your package.json
+
+    ```bash
+    $ npm install --save-dev webpack
+    $ npm install --save-dev html-webpack-plugin
+    $ npm i -D node-sass sass-loader
+    $ npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react
+    $ npm install --save react react-dom
+    $ npm install --save-dev css-loader extract-text-webpack-plugin
+    ```
+
+### 1. Create a webpack.config.js in the project’s root.
+### 2. Configure your package.json scripts to use webpack with commands
+### 2. Add it to your project’s root folder as a .babelrc file
+
+**Now with the command npm run buildwebpack, Webpack will generate a dist/
+folder with all the files assets and with npm run dev we can start the frontend
+aplication.**
 
 #  create django-react-project
 
