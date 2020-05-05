@@ -1,14 +1,15 @@
+const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpckPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Constant with your paths
 
 const paths = {
   // Put your structure paths here
-  DIST: path.resolve(__dirname, 'dist'),
+  DIST: path.resolve(__dirname, 'public/dist'),
   SRC: path.resolve(__dirname, 'src'),
-  JS: path.resolve(__dirname, 'src/js'),
+  JS: path.resolve(__dirname, 'src/components'),
   PUBLIC: path.resolve(__dirname, 'public')
 };
 
@@ -16,9 +17,9 @@ const paths = {
 // Change your entry point here
 
 module.exports = {
-  entry: path.join(paths.JS, 'app.jsx'),
+  entry: path.join('./src/index.js'),
   output: {
-    path: paths.DIST,
+    path: path.join(__dirname, './public/dist'),
     filename: 'app.bundle.js',
   },
 
@@ -40,11 +41,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: [babel-loader],
-        options: {
-          babelrc: true,
-          cacheDirectory: true,
-        },
+        use: ['babel-loader'],
       },{
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
@@ -62,16 +59,16 @@ module.exports = {
     ],
   },
   resolve: {
-    extentions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       '~~': path.resolve(__dirname, 'src')
-    },
-    devServer: {
-      contentBase: path.join(__dirname, 'public'),
-      compress: false,
-      port: 3000,
-      historyApiFallback: true,
-    },
-    devtool: 'source-map'
+    }
   },
-},
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: false,
+    port: 3000,
+    historyApiFallback: true,
+  },
+  devtool: 'source-map'
+}

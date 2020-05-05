@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test - env=jsdom",
     "eject": "react-scripts eject",
-    "buildWebpack": "webpack",
+    "dev_build": "webpack-dev-server --mode development --open",
+    "prod_build": "webpack --mode production",
     "dev": "webpack-dev-server"
   },
   "eslintConfig": {
@@ -50,6 +51,7 @@
     "html-webpack-plugin": "^4.3.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "webpack": "^4.43.0"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }
