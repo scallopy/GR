@@ -41,7 +41,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [babel-loader],
-      }, {
+        options: {
+          babelrc: true,
+          cacheDirectory: true,
+        },
+      },{
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           use: 'css-loader',
@@ -58,6 +62,16 @@ module.exports = {
     ],
   },
   resolve: {
-    extentions: ['.js', '.jsx'],
+    extentions: ['.js', '.jsx', '.json'],
+    alias: {
+      '~~': path.resolve(__dirname, 'src')
+    },
+    devServer: {
+      contentBase: path.join(__dirname, 'public'),
+      compress: false,
+      port: 3000,
+      historyApiFallback: true,
+    },
+    devtool: 'source-map'
   },
 },
