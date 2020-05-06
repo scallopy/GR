@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // Constant with your paths
 
@@ -25,10 +25,14 @@ module.exports = {
 
   // Tell webpack to use html plugin
   plugins: [
+    new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-        template: path.join(paths.PUBLIC, 'index.html'),
-      }),
-    new ExtractTextPlugin('style.bundle.css'),
+      template: './public/index.html',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "styles.bundle.css"
+    })
   ],
 
   // Loaders configuration
@@ -38,19 +42,33 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader'
+      },{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },{
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          use: 'css-loader',
-        }),
+        test: /\.woff2?(\?[a-z0-9#]+)?$/,
+        // Inline small woff files and output them below font/.
+        // Set mimetype just in case.
+        loader: 'url-loader',
+        options: {
+          name: 'fonts/[name].[hash].[ext]',
+          limit: 50000,
+          mimetype: 'application/font-woff',
+          outputPath: 'css/'
+        }
       },{
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          use: ['css-loader', 'sass-loader']
-        }),
+        test: /\.(ttf|svg|eot)(\?[a-z0-9#]+)?$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[hash].[ext]',
+          outputPath: 'css/'
+        }
+      },{
+        test: /\.(css|sass|scss)$/,
+        use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },{
         test: /\.(png|jpg|gif)$/,
         use: ['file-loader'],
@@ -61,7 +79,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
-      '~~': path.resolve(__dirname, 'src')
+      '~~': path.resolve(__dirname, 'src'),
     }
   },
   devServer: {
