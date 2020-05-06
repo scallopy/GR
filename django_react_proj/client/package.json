@@ -31,9 +31,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "webpack --mode production",
-    "test": "react-scripts test - env=jsdom",
-    "eject": "react-scripts eject",
-    "dev": "webpack-dev-server --env development --config webpack.config.js --mode development"
+    "dev": "webpack-dev-server --env development --config webpack.config.js --mode development",
+    "test": "react-scripts test - env=jsdom"
   },
   "eslintConfig": {
     "extends": "react-app"

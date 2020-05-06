@@ -3,16 +3,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-// Constant with your paths
-
-const paths = {
-  // Put your structure paths here
-  DIST: path.resolve(__dirname, 'public/dist'),
-  SRC: path.resolve(__dirname, 'src'),
-  JS: path.resolve(__dirname, 'src/components'),
-  PUBLIC: path.resolve(__dirname, 'public')
-};
-
 // Webpack configuration
 // Change your entry point here
 
